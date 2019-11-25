@@ -1,0 +1,14 @@
+github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802 h1:1BDTz0u9nC3//pOCMdNH+CiXJVYJh5UQNCOBG7jbELc=
+github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
+github.com/BurntSushi/xgbutil v0.0.0-20160919175755-f7c97cef3b4e h1:4ZrkT/RzpnROylmoQL57iVUL57wGKTR5O6KpVnbm2tA=
+github.com/BurntSushi/xgbutil v0.0.0-20160919175755-f7c97cef3b4e/go.mod h1:uw9h2sd4WWHOPdJ13MQpwK5qYWKYDumDqxWWIknEQ+k=
+github.com/adrg/xdg v0.1.0 h1:xxaf0nLoJXBclKu4H6fSIyDltMl+7K23k/PnrNsKwd0=
+github.com/adrg/xdg v0.1.0/go.mod h1:ZuOshBmzV4Ta+s23hdfFZnBsdzmoR3US0d7ErpqSbTQ=
+github.com/google/go-cmp v0.2.0/go.mod h1:oXzfMopK8JAjlY9xF4vHSVASa0yLyX7SntLO5aqRK0M=
+github.com/gumieri/go-sway v0.0.0-20190326020239-f26672ca393d h1:FKz0Jetl2lSTM608LDapa5O1DzIV+3U4+ofJoszG60E=
+github.com/gumieri/go-sway v0.0.0-20190326020239-f26672ca393d/go.mod h1:ojSUJw/6cJnJnTYobE2LbtUGRQa7v7MeT7HO5NVugG4=
+github.com/gumieri/typist v0.1.0 h1:ip4B0+bf3cFDXmvZqrXjPksaAJ1ZCzfabtY3Hrk7DVo=
+github.com/gumieri/typist v0.1.0/go.mod h1:WcfG796Sv8a7K6ZbIxDIpHOll5cLUzGWx0l/Mlcg9cQ=
+github.com/gumieri/typist v1.3.1 h1:UyfPHoPHEzpQolh4Ixxy0BCV9DsvpylOk/9FUFlC6mQ=
+github.com/gumieri/typist v1.3.1/go.mod h1:WcfG796Sv8a7K6ZbIxDIpHOll5cLUzGWx0l/Mlcg9cQ=
+golang.org/x/sync v0.0.0-20190227155943-e225da77a7e6/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
