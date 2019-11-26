@@ -7,8 +7,10 @@ import (
 	"strings"
 )
 
+// Procs is a group of processes
 type Procs []*Proc
 
+// Proc maps the data about a system process
 type Proc struct {
 	PID     int
 	PPID    int
@@ -18,6 +20,7 @@ type Proc struct {
 	Stat    []string
 }
 
+// NewProc gather the system process data from a informed PID
 func NewProc(pid int) (p *Proc, err error) {
 	p = &Proc{PID: pid}
 
@@ -51,6 +54,7 @@ func NewProc(pid int) (p *Proc, err error) {
 	return
 }
 
+// AllProcs gather all running procces at the system to return a collection of it
 func AllProcs() *Procs {
 	files, err := ioutil.ReadDir("/proc/")
 	if err != nil {
@@ -75,6 +79,7 @@ func AllProcs() *Procs {
 	return &procs
 }
 
+// Find a informed PID in the collection of Procs
 func (ps *Procs) Find(pid int) *Proc {
 	for _, p := range *ps {
 		if p.PID == pid {
@@ -85,6 +90,7 @@ func (ps *Procs) Find(pid int) *Proc {
 	return nil
 }
 
+// ChildrenOf look for all process having the informed Proc as parent
 func (ps *Procs) ChildrenOf(pp *Proc) *Procs {
 	var c Procs
 	for _, p := range *ps {

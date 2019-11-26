@@ -7,37 +7,39 @@ import (
 	"github.com/gumieri/go-sway"
 )
 
+// Program define the information to recreate a program
 type Program struct {
-	Proc      *Proc
-	Name      string
-	Workspace string
-	Command   []string
+	Name      string   `json:"name"`
+	Workspace string   `json:"workspace"`
+	Command   []string `json:"command"`
 }
 
+// NewProgramInput is only used as parameter data to NewProgram
 type NewProgramInput struct {
 	Node      *sway.Node
 	Workspace string
 	Procs     *Procs
 }
 
+// NewProgram create a Program with the definitions of informed Sway Node, for a defined Workspace
 func NewProgram(input *NewProgramInput) (p *Program, err error) {
 	p = &Program{Workspace: input.Workspace}
 
-	p.Proc = input.Procs.Find(input.Node.PID)
-	if p.Proc == nil {
+	proc := input.Procs.Find(input.Node.PID)
+	if proc == nil {
 		err = errors.New("PID not found")
 		return
 	}
 
-	exeA := strings.Split(p.Proc.EXE, "/")
+	exeA := strings.Split(proc.EXE, "/")
 	p.Name = exeA[len(exeA)-1]
 
-	p.Command = p.Proc.CMDLine
+	p.Command = proc.CMDLine
 	switch p.Name {
 	case "alacritty":
-		children := *input.Procs.ChildrenOf(p.Proc)
+		children := *input.Procs.ChildrenOf(proc)
 		p.Command = []string{
-			p.Proc.CMDLine[0],
+			proc.CMDLine[0],
 			"--working-directory " + children[0].CWD,
 		}
 	}
@@ -45,16 +47,19 @@ func NewProgram(input *NewProgramInput) (p *Program, err error) {
 	return
 }
 
+// Restore outputs the command for restoring a Program
 func (p *Program) Restore() string {
 	return "workspace " + p.Workspace + "; exec " + strings.Join(p.Command, " ")
 }
 
+// GetProgramsInput is only used as parameter data to GetPrograms
 type GetProgramsInput struct {
 	Parent    *sway.Node
 	Workspace string
 	Procs     *Procs
 }
 
+// GetPrograms read a Sway Tree for mapping the running programs and return a slice of it
 func GetPrograms(input *GetProgramsInput) (programs []*Program, err error) {
 	programs = make([]*Program, 0)
 
