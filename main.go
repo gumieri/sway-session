@@ -7,6 +7,8 @@ import (
 
 	"github.com/adrg/xdg"
 	"github.com/gumieri/go-sway"
+	"github.com/gumieri/sway-session/proc"
+	"github.com/gumieri/sway-session/program"
 	"github.com/gumieri/typist"
 )
 
@@ -20,9 +22,9 @@ func saveSession() (err error) {
 		return
 	}
 
-	programs, err := GetPrograms(&GetProgramsInput{
+	programs, err := program.GetPrograms(&program.GetProgramsInput{
 		Parent: tree.Root,
-		Procs:  AllProcs(),
+		Procs:  proc.AllProcs(),
 	})
 	if err != nil {
 		return
@@ -41,7 +43,7 @@ func saveSession() (err error) {
 	return
 }
 
-func loadSession() (programs []*Program, err error) {
+func loadSession() (programs []*program.Program, err error) {
 	sessionFile, err := os.Open(sessionFilePath)
 
 	if err != nil {
@@ -71,8 +73,8 @@ func main() {
 		programs, err := loadSession()
 		t.Must(err)
 
-		for _, program := range programs {
-			_, err := sway.RunCommand(program.Restore())
+		for _, p := range programs {
+			_, err := sway.RunCommand(p.Restore())
 			t.Must(err)
 		}
 	}

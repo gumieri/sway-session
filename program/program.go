@@ -1,10 +1,11 @@
-package main
+package program
 
 import (
 	"errors"
 	"strings"
 
 	"github.com/gumieri/go-sway"
+	"github.com/gumieri/sway-session/proc"
 )
 
 // Program define the information to recreate a program
@@ -18,7 +19,7 @@ type Program struct {
 type NewProgramInput struct {
 	Node      *sway.Node
 	Workspace string
-	Procs     *Procs
+	Procs     *proc.Procs
 }
 
 // NewProgram create a Program with the definitions of informed Sway Node, for a defined Workspace
@@ -56,7 +57,7 @@ func (p *Program) Restore() string {
 type GetProgramsInput struct {
 	Parent    *sway.Node
 	Workspace string
-	Procs     *Procs
+	Procs     *proc.Procs
 }
 
 // GetPrograms read a Sway Tree for mapping the running programs and return a slice of it
