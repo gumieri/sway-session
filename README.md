@@ -1,6 +1,6 @@
 # sway-session
 
-Tool for saving the state of the Sway session and restoring it.
+Tool for saving the state of the [Sway WM](https://swaywm.org) session and restoring it.
 
 **At the moment, it is a [PoC](https://en.wikipedia.org/wiki/Proof_of_concept)!**
 
