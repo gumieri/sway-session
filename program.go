@@ -60,21 +60,20 @@ type GetProgramsInput struct {
 }
 
 // GetPrograms read a Sway Tree for mapping the running programs and return a slice of it
-func GetPrograms(input *GetProgramsInput) (programs []*Program, err error) {
-	programs = make([]*Program, 0)
+func GetPrograms(input *GetProgramsInput) ([]*Program, error) {
+	programs := make([]*Program, 0)
 
 	for _, node := range input.Parent.Nodes {
 		switch node.Type {
 		case sway.Con:
-			var p *Program
-			p, err = NewProgram(&NewProgramInput{
+			p, err := NewProgram(&NewProgramInput{
 				Node:      node,
 				Workspace: input.Workspace,
 				Procs:     input.Procs,
 			})
 
 			if err != nil {
-				return
+				return programs, err
 			}
 
 			programs = append(programs, p)
@@ -84,20 +83,19 @@ func GetPrograms(input *GetProgramsInput) (programs []*Program, err error) {
 			fallthrough
 
 		default:
-			nodePrograms := make([]*Program, 0)
-			nodePrograms, err = GetPrograms(&GetProgramsInput{
+			nodePrograms, err := GetPrograms(&GetProgramsInput{
 				Parent:    node,
 				Workspace: input.Workspace,
 				Procs:     input.Procs,
 			})
 
 			if err != nil {
-				return
+				return programs, err
 			}
 
 			programs = append(programs, nodePrograms...)
 		}
 	}
 
-	return
+	return programs, nil
 }
