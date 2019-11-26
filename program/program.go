@@ -39,10 +39,7 @@ func NewProgram(input *NewProgramInput) (p *Program, err error) {
 	switch p.Name {
 	case "alacritty":
 		children := *input.Procs.ChildrenOf(proc)
-		p.Command = []string{
-			proc.CMDLine[0],
-			"--working-directory " + children[0].CWD,
-		}
+		p.Command = []string{proc.CMDLine[0], "--working-directory " + children[0].CWD}
 	}
 
 	return
