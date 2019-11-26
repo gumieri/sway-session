@@ -4,6 +4,7 @@ Tool for saving the state of the [Sway WM](https://swaywm.org) session and resto
 
 **At the moment, it is a [PoC](https://en.wikipedia.org/wiki/Proof_of_concept)!**
 
+[![Actions Status](https://github.com/gumieri/sway-session/workflows/Go/badge.svg)](https://github.com/gumieri/sway-session/actions)
 [![Go Report Card](https://goreportcard.com/badge/github.com/gumieri/note)](https://goreportcard.com/report/github.com/gumieri/note)
 [![GoDoc](https://godoc.org/github.com/gumieri/sway-session?status.svg)](https://godoc.org/github.com/gumieri/sway-session)
 
