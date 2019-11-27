@@ -13,7 +13,7 @@ For saving the running programs and its workspace disposition run the given comm
 ```bash
 sway-session save
 ```
-It will create a file in creates a file at `$XDG_DATA_HOME/sway-session/`
+It will create a json file at `$XDG_DATA_HOME/sway-session/sessions/`.
 
 To restore simply use:
 ```bash
