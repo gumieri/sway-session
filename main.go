@@ -27,7 +27,7 @@ func main() {
 		s, err := session.New()
 		t.Must(err)
 
-		durationInterval := time.Duration(5)
+		durationInterval := time.Duration(60)
 		if len(os.Args) >= 3 {
 			interval, err := strconv.Atoi(os.Args[2])
 			t.Must(err)
