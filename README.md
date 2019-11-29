@@ -24,6 +24,17 @@ The recomendation would be to place at the sway config file something like that:
 exec sway-session restore
 ```
 
+There is a command for constantly save your session:
+```bash
+sway-session save-loop 120
+```
+It will save your session every 2 minutes, informed in seconds. If the seconds are not informed it will assume the default value, which is 1 minute.
+
+As the recommended configuration for restore, the same is possible for it:
+```config
+exec sway-session save-loop
+```
+
 ## Supported programs
 Considering that a lot of programs have different ways of retrieving it state and restoring it to the desired state,
 the `sway-session` can only offer a generic approach for all the ecosystem and for more specific programs (like terminal-emulators)
