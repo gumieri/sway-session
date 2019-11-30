@@ -30,9 +30,9 @@ sway-session save-loop 120
 ```
 It will save your session every 2 minutes, informed in seconds. If the seconds are not informed it will assume the default value, which is 1 minute.
 
-As the recommended configuration for restore, the same is possible for it:
+The recomendation way to use it would be something like:
 ```config
-exec sway-session save-loop
+exec sway-session restore && sway-session save-loop
 ```
 
 ## Supported programs
