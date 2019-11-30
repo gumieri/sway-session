@@ -24,9 +24,6 @@ func main() {
 		t.Must(s.Save())
 
 	case "save-loop":
-		s, err := session.New()
-		t.Must(err)
-
 		durationInterval := time.Duration(60)
 		if len(os.Args) >= 3 {
 			interval, err := strconv.Atoi(os.Args[2])
@@ -35,8 +32,11 @@ func main() {
 		}
 
 		for {
+			s, err := session.New()
+			t.Must(err)
 			time.Sleep(durationInterval * time.Second)
 			t.Must(s.Save())
+			session.CleanUp()
 		}
 
 	case "restore":
@@ -44,5 +44,8 @@ func main() {
 		t.Must(err)
 
 		t.Must(s.Restore())
+
+	case "clean-up":
+		t.Must(session.CleanUp())
 	}
 }

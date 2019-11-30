@@ -5,6 +5,7 @@ import (
 	"errors"
 	"io/ioutil"
 	"log"
+	"os"
 	"path"
 	"path/filepath"
 	"sort"
@@ -100,6 +101,37 @@ func (s *Session) Save() (err error) {
 func (s *Session) Restore() (err error) {
 	for _, p := range s.Programs {
 		_, err = sway.RunCommand(p.Restore())
+		if err != nil {
+			return
+		}
+	}
+
+	return
+}
+
+// CleanUp delete all session files except the last
+func CleanUp() (err error) {
+	files, err := ioutil.ReadDir(sessionsPath)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if len(files) == 0 {
+		return
+	}
+
+	sort.Slice(files, func(i, j int) bool {
+		iUnix := timestampFromFilename(files[i].Name())
+		jUnix := timestampFromFilename(files[j].Name())
+		return iUnix > jUnix
+	})
+
+	for i, file := range files {
+		if i == 0 {
+			continue
+		}
+
+		err = os.Remove(path.Join(sessionsPath, file.Name()))
 		if err != nil {
 			return
 		}
