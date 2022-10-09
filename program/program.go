@@ -40,6 +40,8 @@ func NewProgram(input *NewProgramInput) (p *Program, err error) {
 	case "alacritty":
 		children := *input.Procs.ChildrenOf(proc)
 		p.Command = []string{proc.CMDLine[0], "--working-directory " + children[0].CWD}
+	case "firefox":
+		p.Command = []string{"/usr/bin/firefox", "%u"}
 	}
 
 	return
